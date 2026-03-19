@@ -11,7 +11,7 @@ export function Hero() {
 
   const roles = [
   'Building Scalable & Impactful Products',
-  'Full-Stack Engineer',
+  'Engineering Production-Ready Systems',
   'Systems That Scale',
   'AI-Powered Systems Builder',
   'Automation & Deployment Focused',
@@ -128,7 +128,7 @@ export function Hero() {
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
-                href="https://drive.google.com/file/d/1cdM7JXBQQpFuV-buI4qCZM5e0xgLu_BQ/view?usp=sharing"
+                href="https://drive.google.com/file/d/1J-FLY68-hLnQWXxFpFIiU5HzThf5zNEX/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
