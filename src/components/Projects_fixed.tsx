@@ -282,90 +282,74 @@ export function Projects() {
               transition={{ duration: 0.8, delay: 0.1 * index }}
               className="group"
             >
-              {project.live ? (
-                <a href={project.live} target="_blank" rel="noopener noreferrer" className="block h-full">
-                  <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 overflow-hidden cursor-pointer">
-                    {getThumbnail(project.categories, project.icon)}
-                    <CardHeader>
-                      <div className="flex flex-col items-end gap-1 mb-2">
-                        <Badge variant={project.status === 'Active' ? 'default' : 'secondary'} className="text-xs">{project.status}</Badge>
-                        {'achievement' in project && project.achievement && <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">{project.achievement}</Badge>}
-                      </div>
-                      <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{project.description}</p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-1">
-                        {project.tech.slice(0, 3).map((tech) => <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>)}
-                        {project.tech.length > 3 && <Badge variant="outline" className="text-xs">+{project.tech.length - 3} more</Badge>}
-                      </div>
-                    </CardContent>
-                  </SpotlightCard>
-                </a>
-              ) : (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <div className="h-full cursor-pointer">
-                      <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 overflow-hidden">
-                        {getThumbnail(project.categories, project.icon)}
-                        <CardHeader>
-                          <div className="flex flex-col items-end gap-1 mb-2">
-                            <Badge variant={project.status === 'Active' ? 'default' : 'secondary'} className="text-xs">{project.status}</Badge>
-                            {'achievement' in project && project.achievement && <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">{project.achievement}</Badge>}
-                          </div>
-                          <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
-                          <p className="text-sm text-muted-foreground">{project.description}</p>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex flex-wrap gap-1">
-                            {project.tech.slice(0, 3).map((tech) => <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>)}
-                            {project.tech.length > 3 && <Badge variant="outline" className="text-xs">+{project.tech.length - 3} more</Badge>}
-                          </div>
-                        </CardContent>
-                      </SpotlightCard>
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle className="flex items-center gap-3">
-                        {project.icon}
-                        {project.title}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                      <p className="text-muted-foreground">{project.longDescription}</p>
-                      <div>
-                        <h4 className="mb-2">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {project.features.map((feature, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm">
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="mb-2">Technologies Used:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech) => <Badge key={tech} variant="secondary">{tech}</Badge>)}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="h-full cursor-pointer">
+                    <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 overflow-hidden flex flex-col">
+                      {getThumbnail(project.categories, project.icon)}
+                      <CardHeader>
+                        <div className="flex flex-col items-end gap-1 mb-2">
+                          <Badge variant={project.status === 'Active' ? 'default' : 'secondary'} className="text-xs">{project.status}</Badge>
+                          {'achievement' in project && project.achievement && <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">{project.achievement}</Badge>}
                         </div>
-                      </div>
-                      <div className="pt-4">
-                        {'github' in project && project.github ? (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Button className="w-full"><Github className="mr-2 h-4 w-4" />View Code</Button>
-                          </a>
-                        ) : (
-                          <button disabled className="w-full cursor-not-allowed opacity-50">
-                            <Button className="w-full pointer-events-none"><Github className="mr-2 h-4 w-4" />Code Private</Button>
-                          </button>
-                        )}
+                        <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                        <p className="text-sm text-muted-foreground">{project.description}</p>
+                      </CardHeader>
+                      <CardContent className="flex flex-col gap-3 mt-auto">
+                        <div className="flex flex-wrap gap-1">
+                          {project.tech.slice(0, 3).map((tech) => <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>)}
+                          {project.tech.length > 3 && <Badge variant="outline" className="text-xs">+{project.tech.length - 3} more</Badge>}
+                        </div>
+                        <Button variant="default" size="sm" className="w-full">
+                          View Details
+                        </Button>
+                      </CardContent>
+                    </SpotlightCard>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-3">
+                      {project.icon}
+                      {project.title}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <p className="text-muted-foreground">{project.longDescription}</p>
+                    <div>
+                      <h4 className="mb-2">Key Features:</h4>
+                      <ul className="space-y-1">
+                        {project.features.map((feature, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="mb-2">Technologies Used:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => <Badge key={tech} variant="secondary">{tech}</Badge>)}
                       </div>
                     </div>
-                  </DialogContent>
-                </Dialog>
-              )}
+                    <div className="flex gap-3 pt-4">
+                      {'github' in project && project.github ? (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button className="w-full"><Github className="mr-2 h-4 w-4" />View Code</Button>
+                        </a>
+                      ) : (
+                        <Button disabled className="flex-1"><Github className="mr-2 h-4 w-4" />Code Private</Button>
+                      )}
+                      {project.live && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button variant="outline" className="w-full"><ExternalLink className="mr-2 h-4 w-4" />Live Demo</Button>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </motion.div>
           ))}
         </div>
