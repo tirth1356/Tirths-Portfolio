@@ -10,12 +10,13 @@ export function Hero() {
   const [isTyping, setIsTyping] = useState(true);
 
   const roles = [
-    'Full-Stack Developer',
-    'AI/ML Voyager',
-    'Web Dev Craftsman',
-    'Blockchain enthusiast',
-    'Competitive Programmer',
-  ];
+  'Building Scalable & Impactful Products',
+  'Full-Stack Engineer',
+  'Systems That Scale',
+  'AI-Powered Systems Builder',
+  'Automation & Deployment Focused',
+  'Blockchain Enthusiast',
+];
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -40,10 +41,10 @@ export function Hero() {
               clearInterval(deleteInterval);
               setCurrentRole((prev) => (prev + 1) % roles.length);
             }
-          }, 50);
-        }, 2000);
+          }, 25);
+        }, 1000);
       }
-    }, 100);
+    }, 50);
 
     return () => clearInterval(typeInterval);
   }, [currentRole]);
@@ -74,7 +75,7 @@ export function Hero() {
                 text="Hi, I'm Tirth Patel"
                 animateOn="view"
                 speed={55}
-                maxIterations={18}
+                maxIterations={27}
                 className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
                 encryptedClassName="text-primary/40"
               />
@@ -166,6 +167,24 @@ export function Hero() {
                 </div>
               </motion.a>
             ))}
+
+            <motion.a
+              href="https://www.hackerrank.com/profile/tirthpatel1356"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.1 }}
+            >
+              <div className="h-16 w-16 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-primary/40 transition-all duration-300">
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="currentColor">
+                  <text x="2" y="20" fontSize="22" fontWeight="bold" fontFamily="sans-serif">H</text>
+                  <text x="16" y="20" fontSize="18" fontFamily="sans-serif">r</text>
+                </svg>
+              </div>
+            </motion.a>
           </motion.div>
         </div>
       </div>

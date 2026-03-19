@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import type { ReactNode } from 'react';
+import { CardContent, CardHeader, CardTitle } from './ui/card';
 import { SpotlightCard } from './ui/SpotlightCard';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -23,6 +24,26 @@ export function Projects() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [activeCategory, setActiveCategory] = useState('All');
 
+  const getThumbnail = (categories: string[], icon: ReactNode) => {
+    const gradients: Record<string, string> = {
+      'Blockchain': 'from-violet-600/30 via-purple-500/20 to-indigo-600/30',
+      'AI/ML': 'from-cyan-600/30 via-blue-500/20 to-teal-600/30',
+      'Full-Stack': 'from-emerald-600/30 via-green-500/20 to-lime-600/30',
+      'Enterprise': 'from-orange-600/30 via-amber-500/20 to-yellow-600/30',
+      'Urban-AI': 'from-sky-600/30 via-blue-500/20 to-cyan-600/30',
+      'Data Science': 'from-pink-600/30 via-rose-500/20 to-red-600/30',
+    };
+    const gradient = gradients[categories[0]] || 'from-slate-600/30 via-gray-500/20 to-zinc-600/30';
+    return (
+      <div className={`relative h-32 w-full rounded-t-lg bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden mb-0`}>
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+        <div className="p-4 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 scale-150">
+          {icon}
+        </div>
+      </div>
+    );
+  };
+
   const projects = [
     {
       title: 'Dhruva — Decentralized Credential Verification',
@@ -38,7 +59,7 @@ export function Projects() {
         'CI/CD pipeline for automated testing and deployment',
         'Won ₹30,000 prize at IIT Gandhinagar hackathon'
       ],
-      category: 'Blockchain',
+      categories: ['Blockchain', 'AI/ML', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 Hackathon Winner',
       github: 'https://github.com/Smith24298/Dhruva_1',
@@ -58,7 +79,7 @@ export function Projects() {
         'Interactive geospatial visualizations',
         'Top 10 at Ahmedabad University Hackathon'
       ],
-      category: 'Urban-AI',
+      categories: ['Urban-AI', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 Top 10 University Hackathon',
       github: 'https://github.com/tirth1356/Urban-Intelligence-platform'
@@ -77,7 +98,7 @@ export function Projects() {
         'Personalized learning recommendations',
         'Progress tracking and analytics dashboard'
       ],
-      category: 'AI/ML',
+      categories: ['AI/ML', 'Full-Stack'],
       status: 'Active',
       achievement: '🏆 15th/700 - GDG Gandhinagar',
       github: 'https://github.com/tirth1356/Quizify'
@@ -96,7 +117,7 @@ export function Projects() {
         'Explainable formatting decisions',
         'Privacy-first architecture'
       ],
-      category: 'AI/ML',
+      categories: ['AI/ML', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 Top 5 in Track',
       github: 'https://github.com/tirth1356/formatix'
@@ -115,7 +136,7 @@ export function Projects() {
         'Geospatial analytics with interactive maps',
         'Responsive dashboard for multi-device access'
       ],
-      category: 'Full-Stack',
+      categories: ['Urban-AI', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 GDG Nirma Finalist',
       github: 'https://github.com/tirth1356/CivicFlow'
@@ -134,7 +155,7 @@ export function Projects() {
         'Real-time recommendations based on industry standards',
         'Data visualization dashboard for ESG metrics'
       ],
-      category: 'AI/ML',
+      categories: ['AI/ML', 'Urban-AI', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 Top 15 - Pitched to Dean',
       github: 'https://github.com/tirth1356/tirth1356-ESGResolve_Platform'
@@ -153,7 +174,7 @@ export function Projects() {
         'GitHub API powered real-time sync',
         'Multi-repo management dashboard'
       ],
-      category: 'Full-Stack',
+      categories: ['Full-Stack', 'AI/ML'],
       status: 'Completed',
       achievement: '🏆 Finalist , Unsaid Talks',
       github: 'https://github.com/tirth1356/RepoMaster'
@@ -172,7 +193,7 @@ export function Projects() {
         'Odoo framework with custom modules',
         'Scalable for large enterprise operations'
       ],
-      category: 'Enterprise',
+      categories: ['Enterprise', 'Full-Stack'],
       status: 'Completed',
       github: 'https://github.com/tirth1356/odoo_coreinv'
     },
@@ -190,7 +211,7 @@ export function Projects() {
         'Member dashboard and profile management',
         'Deployed on Vercel serving 500+ students'
       ],
-      category: 'Full-Stack',
+      categories: ['Full-Stack', 'Data Science'],
       status: 'Active',
       github: 'https://github.com/tirth1356/dsc-website',
       live: 'https://dsc-itnu.vercel.app/'
@@ -199,9 +220,9 @@ export function Projects() {
 
   const categories = ['All', 'Blockchain', 'AI/ML', 'Full-Stack', 'Data Science', 'Enterprise', 'Urban-AI'];
 
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  const filteredProjects = activeCategory === 'All'
+    ? projects
+    : projects.filter(p => p.categories.includes(activeCategory));
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -232,7 +253,6 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -253,7 +273,6 @@ export function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -263,118 +282,90 @@ export function Projects() {
               transition={{ duration: 0.8, delay: 0.1 * index }}
               className="group"
             >
-              <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                      {project.icon}
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <Badge 
-                        variant={project.status === 'Active' ? 'default' : 'secondary'}
-                        className="text-xs"
-                      >
-                        {project.status}
-                      </Badge>
-                      {project.achievement && (
-                        <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">
-                          {project.achievement}
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.tech.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.tech.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.tech.length - 3} more
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  {project.live ? (
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="block">
-                      <Button className="w-full group-hover:bg-primary/90 transition-colors">
-                        View Live
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  ) : (
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button className="w-full group-hover:bg-primary/90 transition-colors">
-                        View Details
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                      <DialogHeader>
-                        <DialogTitle className="flex items-center gap-3">
-                          {project.icon}
-                          {project.title}
-                        </DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-4">
-                        <p className="text-muted-foreground">
-                          {project.longDescription}
-                        </p>
-                        
-                        <div>
-                          <h4 className="mb-2">Key Features:</h4>
-                          <ul className="space-y-1">
-                            {project.features.map((feature, i) => (
-                              <li key={i} className="flex items-start gap-2 text-sm">
-                                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="mb-2">Technologies Used:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tech.map((tech) => (
-                              <Badge key={tech} variant="secondary">
-                                {tech}
-                              </Badge>
-                            ))}
+              {project.live ? (
+                <a href={project.live} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 overflow-hidden cursor-pointer">
+                    {getThumbnail(project.categories, project.icon)}
+                    <CardHeader>
+                      <div className="flex flex-col items-end gap-1 mb-2">
+                        <Badge variant={project.status === 'Active' ? 'default' : 'secondary'} className="text-xs">{project.status}</Badge>
+                        {'achievement' in project && project.achievement && <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">{project.achievement}</Badge>}
+                      </div>
+                      <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                      <p className="text-sm text-muted-foreground">{project.description}</p>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-1">
+                        {project.tech.slice(0, 3).map((tech) => <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>)}
+                        {project.tech.length > 3 && <Badge variant="outline" className="text-xs">+{project.tech.length - 3} more</Badge>}
+                      </div>
+                    </CardContent>
+                  </SpotlightCard>
+                </a>
+              ) : (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="h-full cursor-pointer">
+                      <SpotlightCard className="h-full hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 overflow-hidden">
+                        {getThumbnail(project.categories, project.icon)}
+                        <CardHeader>
+                          <div className="flex flex-col items-end gap-1 mb-2">
+                            <Badge variant={project.status === 'Active' ? 'default' : 'secondary'} className="text-xs">{project.status}</Badge>
+                            {'achievement' in project && project.achievement && <Badge variant="outline" className="text-xs bg-yellow-500/10 border-yellow-500/20">{project.achievement}</Badge>}
                           </div>
-                        </div>
-
-                        <div className="pt-4">
-                          {project.github ? (
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
-                              <Button className="w-full">
-                                <Github className="mr-2 h-4 w-4" />
-                                View Code
-                              </Button>
-                            </a>
-                          ) : (
-                            <Button className="w-full" disabled>
-                              <Github className="mr-2 h-4 w-4" />
-                              Code Private
-                            </Button>
-                          )}
+                          <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
+                          <p className="text-sm text-muted-foreground">{project.description}</p>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-wrap gap-1">
+                            {project.tech.slice(0, 3).map((tech) => <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>)}
+                            {project.tech.length > 3 && <Badge variant="outline" className="text-xs">+{project.tech.length - 3} more</Badge>}
+                          </div>
+                        </CardContent>
+                      </SpotlightCard>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-3">
+                        {project.icon}
+                        {project.title}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <p className="text-muted-foreground">{project.longDescription}</p>
+                      <div>
+                        <h4 className="mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {project.features.map((feature, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm">
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="mb-2">Technologies Used:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech) => <Badge key={tech} variant="secondary">{tech}</Badge>)}
                         </div>
                       </div>
-                    </DialogContent>
-                  </Dialog>
-                  )}
-                </CardContent>
-              </SpotlightCard>
+                      <div className="pt-4">
+                        {'github' in project && project.github ? (
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Button className="w-full"><Github className="mr-2 h-4 w-4" />View Code</Button>
+                          </a>
+                        ) : (
+                          <button disabled className="w-full cursor-not-allowed opacity-50">
+                            <Button className="w-full pointer-events-none"><Github className="mr-2 h-4 w-4" />Code Private</Button>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              )}
             </motion.div>
           ))}
         </div>
@@ -382,4 +373,3 @@ export function Projects() {
     </section>
   );
 }
-

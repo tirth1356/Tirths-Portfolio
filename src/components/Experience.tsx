@@ -1,6 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { Badge } from './ui/badge';
+import { SpotlightCard } from './ui/SpotlightCard';
 import { Building, Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const experiences = [
@@ -82,7 +83,8 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
           }`}
         />
 
-        <div className="relative rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-6 hover:border-primary/40 transition-colors duration-300 group">
+        <SpotlightCard spotlightColor="rgba(147, 51, 234, 0.10)" className="rounded-2xl">
+        <div className="relative rounded-2xl border-0 bg-transparent p-6 group">
           {/* Top gradient bar */}
           <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-gradient-to-r ${exp.color}`} />
 
@@ -139,6 +141,7 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
             ))}
           </div>
         </div>
+        </SpotlightCard>
       </motion.div>
     </div>
   );

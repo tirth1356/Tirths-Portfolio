@@ -47,7 +47,7 @@ export function Skills() {
   const coreSkills = [
     { 
       name: 'Full-Stack Development', 
-      experience: 'Proficient',
+      experience: 'Advanced',
       years: '2+ years',
       projects: '6+ projects',
       description: 'React, Next.js, Node.js, Express.js - End-to-end web applications',
@@ -62,11 +62,11 @@ export function Skills() {
       icon: <Hexagon className="h-6 w-6 text-purple-500" />
     },
     { 
-      name: 'Python', 
-      experience: 'Expert',
-      years: '3+ years',
+      name: 'DevOps & Tools', 
+      experience: 'Proficient',
+      years: '2+ years',
       projects: '8+ projects',
-      description: 'Backend development, AI/ML, data analysis, automation',
+      description: 'Docker, Git, CI/CD, Linux, Vercel, Postman — build, ship, automate',
       icon: <Cpu className="h-6 w-6 text-green-500" />
     },
     { 
@@ -116,7 +116,7 @@ export function Skills() {
   };
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-20 bg-muted/30 relative">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -209,22 +209,8 @@ export function Skills() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <Card className="max-w-3xl mx-auto relative overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"
-              animate={{
-                background: [
-                  'linear-gradient(45deg, var(--primary)/5%, transparent 50%, var(--secondary)/5%)',
-                  'linear-gradient(135deg, var(--secondary)/5%, transparent 50%, var(--accent)/5%)',
-                  'linear-gradient(225deg, var(--accent)/5%, transparent 50%, var(--primary)/5%)'
-                ]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: 'linear'
-              }}
-            />
+          <SpotlightCard className="max-w-3xl mx-auto">
+          <Card className="max-w-3xl mx-auto relative overflow-hidden bg-transparent border-0 shadow-none">
             <CardHeader className="relative z-10">
               <CardTitle className="flex items-center justify-center gap-2 text-xl">
                 <BookOpen className="h-5 w-5" />
@@ -252,6 +238,7 @@ export function Skills() {
               </div>
             </CardContent>
           </Card>
+          </SpotlightCard>
         </motion.div>
 
         {/* Skills Legend */}
