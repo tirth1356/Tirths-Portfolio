@@ -62,7 +62,7 @@ export function Projects() {
       categories: ['Blockchain', 'AI/ML', 'Full-Stack'],
       status: 'Completed',
       achievement: '🏆 Hackathon Winner',
-      github: 'https://github.com/Smith24298/Dhruva_1',
+      github: 'https://github.com/tirth1356/Dhruva/',
       live: undefined
     },
     {
