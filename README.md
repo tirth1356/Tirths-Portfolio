@@ -143,25 +143,6 @@ src/
 
 **Tools:** Git, Docker, Vercel, Postman, Linux, VS Code
 
-## 🚀 Deployment
-
-### Vercel (Recommended)
-```bash
-npm run build
-# Deploy to Vercel
-```
-
-### Netlify
-```bash
-npm run build
-# Deploy dist folder to Netlify
-```
-
-### GitHub Pages
-```bash
-npm run build
-# Deploy dist folder to gh-pages branch
-```
 
 ## 📞 Contact
 
@@ -169,12 +150,6 @@ npm run build
 - **LinkedIn:** [linkedin.com/in/tirth1356](https://www.linkedin.com/in/tirth1356/)
 - **GitHub:** [github.com/tirth1356](https://github.com/tirth1356)
 - **Location:** Ahmedabad, Gujarat, India
-
-## 📄 Additional Documentation
-
-- [PORTFOLIO_SUMMARY.md](./PORTFOLIO_SUMMARY.md) - Complete portfolio overview
-- [QUICK_START.md](./QUICK_START.md) - Quick start guide
-- [ACHIEVEMENTS.md](./ACHIEVEMENTS.md) - Detailed achievements showcase
 
 ## 🎓 Education
 
