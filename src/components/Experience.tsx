@@ -6,6 +6,21 @@ import { Building, Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const experiences = [
   {
+    title: 'Open Source Contributor',
+    company: 'NSoC — Nexus Spring of Code',
+    date: 'Apr 2026 – May 2026',
+    location: 'Remote',
+    type: 'Open Source',
+    color: 'from-rose-500 to-orange-500',
+    dot: 'bg-rose-500',
+    description: [
+      'Resolved backend and frontend issues across 3+ repositories, improving application stability and reducing reported bugs',
+      'Contributed to CinderPeak (C++ library) by enhancing logging modules and removing deprecated APIs, improving long-term maintainability',
+      'Implemented input validation and structured logging improvements, reducing runtime errors and streamlining debugging workflows',
+    ],
+    skills: ['C++', 'Open Source', 'Debugging', 'Logging', 'API Design', 'Git'],
+  },
+  {
     title: 'Tech Intern (Winter)',
     company: 'Bharat Space Education Research Center (BSERC)',
     date: 'Dec 2025 – Jan 2026',
@@ -61,12 +76,12 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
 
   return (
     <div ref={ref} className="relative flex items-center justify-center mb-16 last:mb-0">
-      {/* Center dot */}
+          {/* Center dot */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={isInView ? { scale: 1, opacity: 1 } : {}}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className={`absolute left-1/2 -translate-x-1/2 z-20 w-5 h-5 rounded-full ${exp.dot} ring-4 ring-background shadow-lg`}
+        className={`absolute left-4 md:left-1/2 -translate-x-1/2 z-20 w-5 h-5 rounded-full ${exp.dot} ring-4 ring-background shadow-lg`}
       />
 
       {/* Card — alternates left/right on md+ */}
@@ -74,7 +89,7 @@ function ExperienceCard({ exp, index }: { exp: typeof experiences[0]; index: num
         initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`w-full md:w-[46%] ${isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}
+    className={`w-full md:w-[46%] pl-8 md:pl-0 ${isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}
       >
         {/* Connector line on md */}
         <div
@@ -178,9 +193,9 @@ export function Experience() {
 
         <div className="max-w-5xl mx-auto relative">
           {/* Static track */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border/40" />
+          <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border/40" />
           {/* Animated fill */}
-          <div ref={lineRef} className="absolute left-1/2 -translate-x-1/2 top-0 w-px overflow-hidden" style={{ height: '100%' }}>
+          <div ref={lineRef} className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 w-px overflow-hidden" style={{ height: '100%' }}>
             <motion.div
               className="w-full bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500"
               style={{ height: lineHeight }}

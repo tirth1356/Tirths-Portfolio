@@ -52,11 +52,11 @@ export default function App() {
       <div className="fixed inset-0 -z-10 w-screen h-screen" style={{ color: '#a78bfa' }}>
         <GravityStarsBackground
           className="w-full h-full"
-          starsCount={typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 220}
-          starsOpacity={0.35}
-          starsSize={1.5}
-          glowIntensity={8}
-          movementSpeed={0.35}
+          starsCount={typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80}
+          starsOpacity={0.3}
+          starsSize={1.2}
+          glowIntensity={0}
+          movementSpeed={0.2}
         />
       </div>
       
@@ -165,10 +165,7 @@ export default function App() {
               whileHover={{ scale: 1.05 }}
             >
               Made with{' '}
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
+              <motion.span>
                 <Heart className="h-3 w-3 text-red-500" />
               </motion.span>
               {' '}by Tirth and AI

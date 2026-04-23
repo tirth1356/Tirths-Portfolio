@@ -77,7 +77,7 @@ function GravityStarsBackground({
     const container = containerRef.current;
     if (!canvas || !container) return;
     const rect = container.getBoundingClientRect();
-    const nextDpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+    const nextDpr = 1;
     setDpr(nextDpr);
     canvas.width = Math.max(1, Math.floor(rect.width * nextDpr));
     canvas.height = Math.max(1, Math.floor(rect.height * nextDpr));
@@ -108,19 +108,16 @@ function GravityStarsBackground({
     (ctx: CanvasRenderingContext2D) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       const color = readColor();
+      ctx.fillStyle = color;
       for (const p of starsRef.current) {
-        ctx.save();
-        ctx.shadowColor = color;
-        ctx.shadowBlur = glowIntensity * 2;
         ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(p.x * dpr, p.y * dpr, p.size * dpr, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
+      ctx.globalAlpha = 1;
     },
-    [dpr, glowIntensity, readColor],
+    [dpr, readColor],
   );
 
   const animate = React.useCallback(() => {
