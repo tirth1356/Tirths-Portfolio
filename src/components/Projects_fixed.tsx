@@ -339,7 +339,7 @@ export function Projects() {
                           <Button className="w-full"><Github className="mr-2 h-4 w-4" />View Code</Button>
                         </a>
                       ) : (
-                        <Button disabled className="flex-1"><Github className="mr-2 h-4 w-4" />Code Private</Button>
+                        <button disabled className="flex-1 opacity-50 cursor-not-allowed inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground h-9 px-4 py-2"><Github className="mr-2 h-4 w-4" />Code Private</button>
                       )}
                       {project.live && (
                         <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1">
