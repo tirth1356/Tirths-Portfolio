@@ -52,7 +52,7 @@ export default function App() {
       <div className="fixed inset-0 -z-10 w-screen h-screen" style={{ color: '#a78bfa' }}>
         <GravityStarsBackground
           className="w-full h-full"
-          starsCount={typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80}
+          starsCount={typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 160}
           starsOpacity={0.3}
           starsSize={1.2}
           glowIntensity={0}
