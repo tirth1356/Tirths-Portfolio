@@ -128,7 +128,7 @@ export function Hero() {
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
-                href="https://drive.google.com/file/d/1bWn2j0w6GSuUGEZxEtuWJBMaknlLDi8P/view?usp=sharing"
+                href="https://drive.google.com/file/d/15us3kGYfHIwQR4eLeo7p6UHU4-5f0TG0/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
