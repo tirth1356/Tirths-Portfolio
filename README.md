@@ -1,6 +1,6 @@
-# Tirth Patel - Professional Portfolio
+# Tirth Patel -vPortfolio
 
-> Hackathon Winner | Blockchain Developer | AI/ML Engineer | Full-Stack Developer
+> Hackathon Winner | AI/ML Engineer | Full-Stack Developer
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-success)](https://your-portfolio-url.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/tirth1356/)
