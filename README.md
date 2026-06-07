@@ -1,4 +1,4 @@
-# Tirth Patel -vPortfolio
+# Tirth Patel - Portfolio
 
 > Hackathon Winner | AI/ML Engineer | Full-Stack Developer
 
