@@ -127,19 +127,17 @@ export function Skills() {
         >
           <h2 className="text-3xl md:text-4xl mb-4">Skills & Expertise</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills and areas of expertise, 
-            developed through academic study and hands-on project experience.
+            A unified view of my technology stack, expertise levels, and hands-on experience.
           </p>
         </motion.div>
 
-        {/* Core Skills */}
+        {/* Unified Skills Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-16"
         >
-          <h3 className="text-2xl mb-8 text-center">Core Technologies</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {coreSkills.map((skill, index) => (
               <motion.div
@@ -150,25 +148,41 @@ export function Skills() {
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="group"
               >
-                <SpotlightCard className="h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="p-2 bg-primary/10 rounded-lg">{skill.icon}</div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-medium mb-2">{skill.name}</h4>
-                        <div className="flex items-center gap-2 mb-3">
+                <SpotlightCard className="h-full flex flex-col justify-between">
+                  <CardContent className="p-6 flex flex-col h-full justify-between gap-4">
+                    <div>
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="p-2 bg-primary/10 rounded-lg">{skill.icon}</div>
+                        <div className="flex-1">
+                          <h4 className="text-lg font-medium mb-1">{skill.name}</h4>
                           <Badge 
                             variant="outline" 
-                            className={`text-xs px-2 py-1 ${getExperienceColor(skill.experience)}`}
+                            className={`text-xs px-2 py-0.5 ${getExperienceColor(skill.experience)}`}
                           >
                             {getExperienceIcon(skill.experience)}
                             <span className="ml-1">{skill.experience}</span>
                           </Badge>
                         </div>
                       </div>
+
+                      {/* Tech Stack Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {skill.description.split(/,|\s*\|\s*/).map((tech) => {
+                          const cleanTech = tech.trim();
+                          if (!cleanTech) return null;
+                          return (
+                            <span 
+                              key={cleanTech} 
+                              className="text-[11px] px-2 py-0.5 rounded-md bg-muted/60 border border-border/50 text-muted-foreground font-medium"
+                            >
+                              {cleanTech}
+                            </span>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-4">{skill.description}</p>
-                    <div className="flex justify-between text-xs text-muted-foreground">
+
+                    <div className="flex justify-between text-xs text-muted-foreground border-t border-border/30 pt-3">
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {skill.years}
@@ -185,59 +199,42 @@ export function Skills() {
           </div>
         </motion.div>
 
-        {/* Skill Categories */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl mb-8 text-center">Technical Stack</h3>
-          <MagicBento
-            items={skillCategories.map(cat => ({
-              title: cat.title,
-              description: cat.skills.join(' · '),
-              icon: cat.icon,
-            }))}
-          />
-        </motion.div>
-
         {/* Education Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center"
         >
           <SpotlightCard className="max-w-3xl mx-auto">
-          <Card className="max-w-3xl mx-auto relative overflow-hidden bg-transparent border-0 shadow-none">
-            <CardHeader className="relative z-10">
-              <CardTitle className="flex items-center justify-center gap-2 text-xl">
-                <BookOpen className="h-5 w-5" />
-                Education
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="relative z-10">
-              <div className="space-y-3">
-                <h3 className="text-xl">B.Tech in Computer Science and Engineering</h3>
-                <p className="text-muted-foreground">Nirma University, Ahmedabad, Gujarat</p>
-                <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    3rd Year
-                  </span>
-                  <span>•</span>
-                  <span>Expected 2028</span>
+            <Card className="max-w-3xl mx-auto relative overflow-hidden bg-transparent border-0 shadow-none">
+              <CardHeader className="relative z-10">
+                <CardTitle className="flex items-center justify-center gap-2 text-xl">
+                  <BookOpen className="h-5 w-5" />
+                  Education
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <div className="space-y-3">
+                  <h3 className="text-xl">B.Tech in Computer Science and Engineering</h3>
+                  <p className="text-muted-foreground">Nirma University, Ahmedabad, Gujarat</p>
+                  <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      3rd Year
+                    </span>
+                    <span>•</span>
+                    <span>Expected 2028</span>
+                  </div>
+                  <div className="mt-6 p-4 bg-muted/30 rounded-lg">
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Object-Oriented Programming, 
+                      Database Management Systems, Operating Systems, Full Stack Development, Artificial Intelligence, Machine Learning
+                    </p>
+                  </div>
                 </div>
-                <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Object-Oriented Programming, 
-                    Database Management Systems, Operating Systems, Full Stack Development, Artificial Intelligence, Machine Learning
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
           </SpotlightCard>
         </motion.div>
 
@@ -245,7 +242,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-12 text-center"
         >
           <div className="flex flex-wrap justify-center gap-4 text-sm">
