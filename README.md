@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/tirth1356)
 
 ## 🏆 Highlights
-
+ 
 - 🥇 **Winner** - Codeversity Hackathon @ IIT Gandhinagar (₹30,000 prize)
 - 🏆 **Top 10** - Ahmedabad University Hackathon
 - 💻 **CodeChef 2★** with 100+ day streak
