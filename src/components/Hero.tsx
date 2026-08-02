@@ -1,8 +1,19 @@
-import { motion } from 'motion/react';
+import { motion, useSpring, useTransform } from 'motion/react';
 import { Button } from './ui/button';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DecryptedText } from './ui/DecryptedText';
+
+function AnimatedCounter({ value }: { value: number }) {
+  const spring = useSpring(0, { bounce: 0, duration: 2500 });
+  const displayValue = useTransform(spring, (current) => Math.round(current).toLocaleString());
+
+  useEffect(() => {
+    spring.set(value);
+  }, [value, spring]);
+
+  return <motion.span>{displayValue}</motion.span>;
+}
 
 export function Hero() {
   const [typedText, setTypedText] = useState('');
@@ -10,13 +21,13 @@ export function Hero() {
   const [isTyping, setIsTyping] = useState(true);
 
   const roles = [
-  'Building Scalable & Impactful Products',
-  'Engineering Production-Ready Systems',
-  'Systems That Scale',
-  'AI-Powered Systems Builder',
-  'Automation & Deployment Focused',
-  'Blockchain Enthusiast',
-];
+    'Building Scalable & Impactful Products',
+    'Engineering Production-Ready Systems',
+    'Systems That Scale',
+    'AI-Powered Systems Builder',
+    'Automation & Deployment Focused',
+    'Blockchain Enthusiast',
+  ];
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -49,6 +60,34 @@ export function Hero() {
     return () => clearInterval(typeInterval);
   }, [currentRole]);
 
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
+  const hasFetchedRef = useRef(false);
+
+  useEffect(() => {
+    if (hasFetchedRef.current) return;
+    hasFetchedRef.current = true;
+
+    // Fetch live hit counter from a public, reliable API
+    fetch('https://api.counterapi.dev/v1/tirth1356-portfolio/visits/up')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.value === 'number') {
+          setVisitorCount(data.value);
+        }
+      })
+      .catch(() => {
+        // Fallback to locally tracked mock value + localStorage if API is blocked or offline
+        try {
+          const localCount = localStorage.getItem('portfolio_visits');
+          const nextCount = localCount ? parseInt(localCount) + 1 : 1337;
+          localStorage.setItem('portfolio_visits', nextCount.toString());
+          setVisitorCount(nextCount);
+        } catch {
+          setVisitorCount(1356);
+        }
+      });
+  }, []);
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -66,7 +105,7 @@ export function Hero() {
             className="mb-6"
           >
             {/* Open to Work Badge */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
@@ -123,6 +162,21 @@ export function Hero() {
             3rd Year B.Tech CSE student at Nirma University — turning complex problems into elegant, production-ready software.
             I build across the full stack: from AI pipelines and cloud infrastructure to scalable web apps and DevOps automation.
           </motion.p>
+
+          {visitorCount !== null && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.4, type: "spring", stiffness: 100 }}
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 via-background to-primary/10 border border-primary/20 text-sm text-muted-foreground mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(var(--primary),0.15)] relative overflow-hidden group cursor-default"
+            >
+              <div className="absolute inset-0 bg-primary/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
+              <span className="font-medium">
+                This website is visited <strong className="text-foreground mx-1 text-base"><AnimatedCounter value={visitorCount} /></strong> times
+              </span>
+            </motion.div>
+          )}
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}

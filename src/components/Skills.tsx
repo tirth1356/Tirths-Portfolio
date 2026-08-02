@@ -1,50 +1,26 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Badge } from './ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { SpotlightCard } from './ui/SpotlightCard';
-import { MagicBento } from './ui/MagicBento';
+import { GlobeSkills } from './GlobeSkills';
 import { Code, Database, Sparkles, Brain, Globe, Terminal, Star, Award, BookOpen, Clock, Cpu, Hexagon, GraduationCap, Trophy } from 'lucide-react';
 
 export function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-  const skillCategories = [
-    {
-      title: 'Languages',
-      icon: <Code className="h-5 w-5" />,
-      skills: ['Python', 'Java', 'C++', 'JavaScript', 'TypeScript', 'SQL']
-    },
-    {
-      title: 'Web & Backend',
-      icon: <Globe className="h-5 w-5" />,
-      skills: ['FastAPI', 'Flask', 'Django', 'Next.js', 'React.js', 'Node.js', 'Express.js', 'REST APIs']
-    },
-    {
-      title: 'Databases & Cloud',
-      icon: <Database className="h-5 w-5" />,
-      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'AWS']
-    },
-    {
-      title: 'DevOps & Tools',
-      icon: <Terminal className="h-5 w-5" />,
-      skills: ['Docker', 'Kubernetes', 'Git', 'Linux', 'GitHub Actions', 'CI/CD', 'Postman', 'Cursor', 'Claude Code', 'Windsurf']
-    },
-    {
-      title: 'Machine Learning & AI',
-      icon: <Brain className="h-5 w-5" />,
-      skills: ['Scikit-Learn', 'TensorFlow', 'PyTorch', 'LangChain', 'Hugging Face', 'RAG Systems', 'Agentic AI']
-    },
-    {
-      title: 'Core CS',
-      icon: <Sparkles className="h-5 w-5" />,
-      skills: ['Data Structures & Algorithms', 'OOP', 'DBMS', 'Operating Systems']
-    }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState<number>(0);
 
   const coreSkills = [
+    { 
+      name: 'Full-Stack Development', 
+      experience: 'Advanced',
+      years: '2+ years',
+      projects: '10+ projects',
+      description: 'Next.js, React.js, Node.js, Express.js, FastAPI, Flask, Django, REST APIs, TailwindCSS, Redux, WebSockets, HTML5, CSS3',
+      icon: <Globe className="h-6 w-6 text-blue-500" />
+    },
     { 
       name: 'Machine Learning & AI', 
       experience: 'Proficient',
@@ -52,14 +28,6 @@ export function Skills() {
       projects: '5+ projects',
       description: 'Scikit-Learn, TensorFlow, PyTorch, LangChain, Hugging Face, RAG Systems, Agentic AI',
       icon: <Brain className="h-6 w-6 text-red-500" />
-    },
-    { 
-      name: 'Web & Backend', 
-      experience: 'Advanced',
-      years: '2+ years',
-      projects: '8+ projects',
-      description: 'FastAPI, Flask, Django, Next.js, React.js, Node.js, Express.js, REST APIs',
-      icon: <Globe className="h-6 w-6 text-blue-500" />
     },
     { 
       name: 'DevOps & Tools', 
@@ -95,6 +63,20 @@ export function Skills() {
     }
   ];
 
+  // Map technologies to images/placeholders inside the Dome Gallery
+  const galleryItems = coreSkills.flatMap((category, catIdx) => 
+    category.description.split(/,|\s*\|\s*/).map(tech => {
+      const cleanName = tech.trim();
+      const encodedText = encodeURIComponent(cleanName);
+      return {
+        // Generates a sleek dark gradient card displaying the skill name as text dynamically
+        src: `https://dummyimage.com/400x600/030213/ececf0.png&text=${encodedText}`,
+        alt: cleanName,
+        label: cleanName
+      };
+    }).filter(t => t.alt.length > 0)
+  );
+
   const getExperienceColor = (experience: string) => {
     switch (experience) {
       case 'Expert': return 'text-green-500 bg-green-500/10 border-green-500/20';
@@ -115,6 +97,8 @@ export function Skills() {
     }
   };
 
+  const activeSkill = coreSkills[selectedCategory];
+
   return (
     <section id="about" className="py-20 bg-muted/30 relative">
       <div className="container mx-auto px-6">
@@ -123,57 +107,92 @@ export function Skills() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl mb-4">Skills & Expertise</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A unified view of my technology stack, expertise levels, and hands-on experience.
+            Drag the interactive globe to spin in any direction. Select categories to highlight specific skills.
           </p>
         </motion.div>
 
-        {/* Unified Skills Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
-        >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {coreSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="group"
-              >
-                <SpotlightCard className="h-full flex flex-col justify-between">
-                  <CardContent className="p-6 flex flex-col h-full justify-between gap-4">
-                    <div>
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="p-2 bg-primary/10 rounded-lg">{skill.icon}</div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-medium mb-1">{skill.name}</h4>
-                          <Badge 
-                            variant="outline" 
-                            className={`text-xs px-2 py-0.5 ${getExperienceColor(skill.experience)}`}
-                          >
-                            {getExperienceIcon(skill.experience)}
-                            <span className="ml-1">{skill.experience}</span>
-                          </Badge>
-                        </div>
-                      </div>
+        {/* Side-by-Side Dynamic Layout */}
+        <div className="grid lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto mb-16">
+          {/* Left Side: 3D Interactive Tag Globe */}
+          <motion.div 
+            className="lg:col-span-7 flex justify-center w-full h-[550px] overflow-hidden relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <GlobeSkills
+              skills={galleryItems.map(item => {
+                const catIdx = coreSkills.findIndex(c => c.description.toLowerCase().includes(item.label.toLowerCase()));
+                return { name: item.label, categoryIndex: catIdx !== -1 ? catIdx : 0 };
+              })}
+              selectedCategory={selectedCategory}
+              radius={240}
+            />
+          </motion.div>
 
-                      {/* Tech Stack Tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {skill.description.split(/,|\s*\|\s*/).map((tech) => {
+          {/* Right Side: Category Selection & Dynamic Detail Card */}
+          <motion.div 
+            className="lg:col-span-5 space-y-6"
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {/* Category Selector Tabs */}
+            <div className="flex flex-wrap gap-2">
+              {coreSkills.map((skill, index) => (
+                <button
+                  key={skill.name}
+                  onClick={() => setSelectedCategory(index)}
+                  className={`text-xs px-3.5 py-2 rounded-lg border transition-all duration-300 ${
+                    selectedCategory === index
+                      ? 'bg-primary border-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 scale-105'
+                      : 'bg-card/40 border-border/60 hover:bg-card/80 text-muted-foreground'
+                  }`}
+                >
+                  {skill.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Dynamic Highlight Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedCategory}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+              >
+                <SpotlightCard className="w-full">
+                  <CardContent className="p-6 space-y-5">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-primary/10 rounded-xl text-primary">{activeSkill.icon}</div>
+                      <div>
+                        <h4 className="text-xl font-medium mb-1.5">{activeSkill.name}</h4>
+                        <Badge 
+                          variant="outline" 
+                          className={`text-xs px-2.5 py-0.5 ${getExperienceColor(activeSkill.experience)}`}
+                        >
+                          {getExperienceIcon(activeSkill.experience)}
+                          <span className="ml-1.5">{activeSkill.experience}</span>
+                        </Badge>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">Technologies Included:</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {activeSkill.description.split(/,|\s*\|\s*/).map((tech) => {
                           const cleanTech = tech.trim();
                           if (!cleanTech) return null;
                           return (
                             <span 
                               key={cleanTech} 
-                              className="text-[11px] px-2 py-0.5 rounded-md bg-muted/60 border border-border/50 text-muted-foreground font-medium"
+                              className="text-xs px-2.5 py-1 rounded-md bg-muted border border-border/80 text-foreground font-medium"
                             >
                               {cleanTech}
                             </span>
@@ -182,22 +201,22 @@ export function Skills() {
                       </div>
                     </div>
 
-                    <div className="flex justify-between text-xs text-muted-foreground border-t border-border/30 pt-3">
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {skill.years}
+                    <div className="flex justify-between text-sm text-muted-foreground border-t border-border/30 pt-4">
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" />
+                        <strong>Experience:</strong> {activeSkill.years}
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Code className="h-3 w-3" />
-                        {skill.problems || skill.projects}
+                      <span className="flex items-center gap-1.5">
+                        <Code className="h-4 w-4" />
+                        <strong>Projects:</strong> {activeSkill.problems || activeSkill.projects}
                       </span>
                     </div>
                   </CardContent>
                 </SpotlightCard>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </div>
 
         {/* Education Section */}
         <motion.div
