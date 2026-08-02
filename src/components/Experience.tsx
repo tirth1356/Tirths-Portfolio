@@ -224,7 +224,7 @@ export function Experience() {
           {/* Static track */}
           <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-border/40" />
           {/* Animated fill */}
-          <div ref={lineRef} className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 w-px overflow-hidden relative" style={{ height: '100%' }}>
+          <div ref={lineRef} className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 w-px overflow-hidden" style={{ height: '100%' }}>
             <motion.div
               className="w-full bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500"
               style={{ height: lineHeight }}
