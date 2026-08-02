@@ -130,7 +130,7 @@ export function GlobeSkills({ skills, selectedCategory, radius = 240 }: GlobeSki
 
         const newP = { ...p, x: x2, y: y1, z: z2 };
 
-        // Paint directly to DOM avoiding React diffing for 60fps smoothness
+        // Paint directly to DOM using GPU-accelerated properties only (bypassing layout/paint thrashing)
         const el = itemRefs.current[i];
         if (el) {
           const isHighlighted = newP.categoryIndex === selectedCategory;
@@ -144,20 +144,10 @@ export function GlobeSkills({ skills, selectedCategory, radius = 240 }: GlobeSki
           const zIndex = Math.round(newP.z + radius);
           const finalScale = isHighlighted ? scale * 1.2 : scale; // Pop out if selected
 
-          el.style.left = `calc(50% + ${newP.x}px)`;
-          el.style.top = `calc(50% + ${newP.y}px)`;
+          // Use translate3d for hardware acceleration, avoid left/top
+          el.style.transform = `translate(-50%, -50%) translate3d(${newP.x}px, ${newP.y}px, 0) scale(${finalScale})`;
           el.style.zIndex = zIndex.toString();
           el.style.opacity = opacity.toString();
-          el.style.transform = `translate(-50%, -50%) scale(${finalScale})`;
-          
-          // Re-apply conditional glow inline to keep it responsive to category sync
-          if (isHighlighted && isFront) {
-            el.style.boxShadow = `0 0 20px 2px ${CATEGORY_COLORS[newP.categoryIndex]}40`;
-            el.style.borderWidth = '2px';
-          } else {
-            el.style.boxShadow = 'none';
-            el.style.borderWidth = '1px';
-          }
         }
 
         return newP;
@@ -197,6 +187,8 @@ export function GlobeSkills({ skills, selectedCategory, radius = 240 }: GlobeSki
                 borderColor: isHighlighted ? `${color}aa` : `${color}20`,
                 backgroundColor: isHighlighted ? `${color}22` : `${color}05`,
                 textShadow: isHighlighted ? `0 0 8px ${color}` : 'none',
+                boxShadow: isHighlighted ? `0 0 20px 2px ${color}30` : 'none',
+                borderWidth: isHighlighted ? '2px' : '1px',
                 // Position and scale are handled continuously by the animation loop
                 left: '50%',
                 top: '50%',
