@@ -175,10 +175,17 @@ const useCanvasCursor = () => {
   };
 
   useEffect(() => {
+    // Disable custom canvas cursor on touch devices / mobile screens to prevent touch glitching
+    const isMobileOrTouch = 
+      typeof window !== 'undefined' && 
+      (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth < 768);
+
+    if (isMobileOrTouch) return;
+
     renderCanvas();
 
     return () => {
-      ctx.running = false;
+      if (ctx) ctx.running = false;
       document.removeEventListener('mousemove', onMousemove);
       document.removeEventListener('touchstart', onMousemove);
       document.body.removeEventListener('orientationchange', resizeCanvas);

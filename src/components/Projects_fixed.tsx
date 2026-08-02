@@ -198,6 +198,42 @@ export function Projects() {
       github: 'https://github.com/tirth1356/odoo_coreinv'
     },
     {
+      title: 'Vayu AI — Gujarat AQI Proactive Platform',
+      description: 'Urban Air Quality Intelligence Platform for Gujarat with multi-agent AI and predictive analytics',
+      longDescription: 'Urban Air Quality Intelligence & Intervention Suite tailored for 32 major urban & industrial nodes across Gujarat. Integrates multi-agent AI (Groq Llama-3.1), hyperlocal 72-hour dispersion forecasting, policy intervention simulator (Odd-Even, Scrubber Audits), automated municipal enforcement directives, and 24/7 multilingual citizen support (English, Gujarati, Hindi).',
+      icon: <Globe className="h-6 w-6" />,
+      tech: ['Next.js 16', 'FastAPI', 'Groq AI', 'Llama 3.1', 'PostgreSQL', 'TailwindCSS', 'Python'],
+      features: [
+        'Geospatial Pollution Source Attribution across 15 high-impact Gujarat clusters',
+        'Hyperlocal 72-Hour Dispersion Forecasting & Policy Intervention Simulator',
+        'Automated Municipal Enforcement Intelligence & Directive Dispatch Generation',
+        'Multi-City Benchmarking & Comparative Analytics Matrix across 32 urban nodes',
+        '24/7 Multilingual AI Support in English, Gujarati, and Hindi'
+      ],
+      categories: ['Urban-AI', 'AI/ML', 'Full-Stack'],
+      status: 'Active',
+      achievement: '🚀 Live Production App',
+      github: 'https://github.com/tirth1356/Gujarat-AQI-Proactive-Platform',
+      live: 'https://gujarat-aqi-platform.vercel.app/'
+    },
+    {
+      title: 'Hand Gesture Game Controller',
+      description: 'Ultra-responsive zero-latency computer vision controller for 4-directional keyboard games',
+      longDescription: 'An ultra-responsive, zero-latency computer vision hand gesture controller built with Python, OpenCV, and MediaPipe. Specifically optimized for games like Subway Surfers, Temple Run, or any 4-directional keyboard-controlled game with real-time hand tracking and key simulation.',
+      icon: <Bot className="h-6 w-6" />,
+      tech: ['Python', 'OpenCV', 'MediaPipe', 'Computer Vision', 'PyAutoGUI'],
+      features: [
+        'Zero-latency real-time hand gesture detection',
+        'Optimized for Subway Surfers, Temple Run, & 4-directional games',
+        'Computer vision pipeline powered by OpenCV & MediaPipe landmark tracking',
+        'Customizable gesture mapping for keyboard key bindings'
+      ],
+      categories: ['AI/ML'],
+      status: 'Completed',
+      achievement: '🎮 Computer Vision Fun Project',
+      github: 'https://github.com/tirth1356/hand-gesture-controller'
+    },
+    {
       title: 'Data Science Club Platform',
       description: 'Full-stack platform serving 500+ students with events and resources',
       longDescription: 'Designed and deployed the official Data Science Club platform at Nirma University (dsc-itnu.vercel.app). Built scalable backend with optimized REST APIs, implemented event management system, resource library, and member dashboard. Currently serving 500+ active students.',

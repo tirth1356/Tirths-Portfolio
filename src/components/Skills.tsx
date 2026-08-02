@@ -13,45 +13,77 @@ export function Skills() {
 
   const skillCategories = [
     {
-      title: 'Programming Languages',
+      title: 'Languages',
       icon: <Code className="h-5 w-5" />,
-      skills: ['Python', 'C++', 'JavaScript', 'TypeScript', 'Java', 'C', 'SQL']
+      skills: ['Python', 'Java', 'C++', 'JavaScript', 'TypeScript', 'SQL']
     },
     {
       title: 'Web & Backend',
       icon: <Globe className="h-5 w-5" />,
-      skills: ['React.js', 'Next.js', 'Node.js', 'Express.js', 'Flask', 'REST APIs', 'Socket.io']
+      skills: ['FastAPI', 'Flask', 'Django', 'Next.js', 'React.js', 'Node.js', 'Express.js', 'REST APIs']
     },
     {
-      title: 'Blockchain & Web3',
-      icon: <Sparkles className="h-5 w-5" />,
-      skills: ['Solidity', 'Web3.js', 'Smart Contracts', 'Metamask', 'Remix IDE']
-    },
-    {
-      title: 'AI & Machine Learning',
-      icon: <Brain className="h-5 w-5" />,
-      skills: ['TensorFlow', 'Machine Learning', 'AI Systems', 'Data Analysis']
-    },
-    {
-      title: 'Databases',
+      title: 'Databases & Cloud',
       icon: <Database className="h-5 w-5" />,
-      skills: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase', 'Database Design']
+      skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'AWS']
     },
     {
-      title: 'Tools & DevOps',
+      title: 'DevOps & Tools',
       icon: <Terminal className="h-5 w-5" />,
-      skills: ['Git', 'Docker', 'Vercel', 'Postman', 'Linux', 'VS Code', 'CI/CD']
+      skills: ['Docker', 'Kubernetes', 'Git', 'Linux', 'GitHub Actions', 'CI/CD', 'Postman', 'Cursor', 'Claude Code', 'Windsurf']
+    },
+    {
+      title: 'Machine Learning & AI',
+      icon: <Brain className="h-5 w-5" />,
+      skills: ['Scikit-Learn', 'TensorFlow', 'PyTorch', 'LangChain', 'Hugging Face', 'RAG Systems', 'Agentic AI']
+    },
+    {
+      title: 'Core CS',
+      icon: <Sparkles className="h-5 w-5" />,
+      skills: ['Data Structures & Algorithms', 'OOP', 'DBMS', 'Operating Systems']
     }
   ];
 
   const coreSkills = [
     { 
-      name: 'Full-Stack Development', 
+      name: 'Machine Learning & AI', 
+      experience: 'Proficient',
+      years: '1+ years',
+      projects: '5+ projects',
+      description: 'Scikit-Learn, TensorFlow, PyTorch, LangChain, Hugging Face, RAG Systems, Agentic AI',
+      icon: <Brain className="h-6 w-6 text-red-500" />
+    },
+    { 
+      name: 'Web & Backend', 
       experience: 'Advanced',
       years: '2+ years',
-      projects: '6+ projects',
-      description: 'React, Next.js, Node.js, Express.js - End-to-end web applications',
+      projects: '8+ projects',
+      description: 'FastAPI, Flask, Django, Next.js, React.js, Node.js, Express.js, REST APIs',
       icon: <Globe className="h-6 w-6 text-blue-500" />
+    },
+    { 
+      name: 'DevOps & Tools', 
+      experience: 'Proficient',
+      years: '2+ years',
+      projects: '8+ projects',
+      description: 'Docker, Kubernetes, Git, Linux, GitHub Actions, CI/CD, Cursor, Windsurf',
+      icon: <Cpu className="h-6 w-6 text-green-500" />
+    },
+    { 
+      name: 'Databases & Cloud', 
+      experience: 'Proficient',
+      years: '2+ years',
+      projects: '6+ projects',
+      description: 'PostgreSQL, MySQL, MongoDB, Firebase, AWS - Scalable data architecture',
+      icon: <Database className="h-6 w-6 text-cyan-500" />
+    },
+    { 
+      name: 'Languages & Core CS', 
+      experience: 'Advanced',
+      years: '3+ years',
+      problems: '500+ problems',
+      description: 'Python, Java, C++, JS, TS, SQL | DSA, OOP, DBMS, Operating Systems',
+      icon: <Trophy className="h-6 w-6 text-yellow-500" />
     },
     { 
       name: 'Blockchain & Web3', 
@@ -60,38 +92,6 @@ export function Skills() {
       projects: '3+ projects',
       description: 'Solidity smart contracts, decentralized systems, SSI platforms',
       icon: <Hexagon className="h-6 w-6 text-purple-500" />
-    },
-    { 
-      name: 'DevOps & Tools', 
-      experience: 'Proficient',
-      years: '2+ years',
-      projects: '8+ projects',
-      description: 'Docker, Git, CI/CD, Linux, Vercel, Postman — build, ship, automate',
-      icon: <Cpu className="h-6 w-6 text-green-500" />
-    },
-    { 
-      name: 'AI & Machine Learning', 
-      experience: 'Proficient',
-      years: '1+ years',
-      projects: '4+ projects',
-      description: 'TensorFlow, AI-powered systems, intelligent applications',
-      icon: <Brain className="h-6 w-6 text-red-500" />
-    },
-    { 
-      name: 'Competitive Programming', 
-      experience: 'Learning',
-      years: '1+ years',
-      problems: '500+ problems',
-      description: 'DSA - CodeChef 2★, LeetCode 1676, Codeforces Pupil',
-      icon: <Trophy className="h-6 w-6 text-yellow-500" />
-    },
-    { 
-      name: 'Database Systems', 
-      experience: 'Proficient',
-      years: '2+ years',
-      projects: '5+ projects',
-      description: 'MySQL, MongoDB, PostgreSQL - Scalable data architecture',
-      icon: <Database className="h-6 w-6 text-cyan-500" />
     }
   ];
 
@@ -224,7 +224,7 @@ export function Skills() {
                 <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
-                    2nd Year
+                    3rd Year
                   </span>
                   <span>•</span>
                   <span>Expected 2028</span>

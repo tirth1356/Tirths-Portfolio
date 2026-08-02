@@ -65,6 +65,22 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="mb-6"
           >
+            {/* Open to Work Badge */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mb-6 backdrop-blur-md shadow-lg shadow-emerald-500/10"
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <span className="text-sm font-semibold tracking-wide">
+                🟢 Open to Work: SWE Intern | SDE | AIML Intern | DevOps Intern | Business Analyst
+              </span>
+            </motion.div>
+
             <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl mb-6"
               initial={{ opacity: 0, scale: 0.5 }}
@@ -104,8 +120,8 @@ export function Hero() {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
           >
-            B.Tech CSE student at Nirma University specializing in full-stack engineering, blockchain, and AI systems.
-            Demonstrated ability to design and deliver scalable, real-world solutions through hackathon-winning projects.
+            3rd Year B.Tech CSE student at Nirma University passionate about full-stack engineering, AI/ML models, and DevOps.
+            Open to roles as SWE Intern, SDE, AIML Intern, DevOps Intern, and Business Analyst.
           </motion.p>
 
           <motion.div

@@ -6,6 +6,35 @@ import { Building, Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const experiences = [
   {
+    title: 'Software Development Engineer Intern',
+    company: 'Chronis (IIT BHU Startup)',
+    date: 'Jun 2026 – Sep 2026',
+    location: 'Remote',
+    type: 'Internship',
+    color: 'from-purple-500 to-indigo-500',
+    dot: 'bg-purple-500',
+    description: [
+      'Engineered and deployed a MERN-stack web application tailored for early adopters, optimizing the user journey and product discovery pipeline',
+      'Developed a Machine Learning engine utilizing all-MiniLM sentence transformers and LLM architectures to compute semantic divergence scores, enabling accurate user classification and behavior analysis',
+    ],
+    skills: ['Machine Learning', 'Sentence Transformers', 'LLMs', 'MERN Stack', 'React.js', 'Node.js', 'Python'],
+  },
+  {
+    title: 'Open Source Contributor',
+    company: 'GirlScript Summer of Code (GSSoC)',
+    date: 'May 2026 – Jul 2026',
+    location: 'Remote',
+    type: 'Open Source',
+    color: 'from-amber-500 to-orange-500',
+    dot: 'bg-amber-500',
+    description: [
+      'Successfully merged 30+ accepted pull requests across multiple repositories, addressing critical features and performance bottlenecks',
+      'Collaborated with maintainers and community contributors to optimize core codebase structures and enhance overall repository security',
+      'Mentored new contributors on Git workflows, pull request best practices, and code review standards',
+    ],
+    skills: ['Open Source', 'Git', 'GitHub', 'Python', 'JavaScript', 'Code Review'],
+  },
+  {
     title: 'Open Source Contributor',
     company: 'NSoC — Nexus Spring of Code',
     date: 'Apr 2026 – May 2026',
@@ -14,9 +43,9 @@ const experiences = [
     color: 'from-rose-500 to-orange-500',
     dot: 'bg-rose-500',
     description: [
-      'Resolved backend and frontend issues across 3+ repositories, improving application stability and reducing reported bugs',
-      'Contributed to CinderPeak (C++ library) by enhancing logging modules and removing deprecated APIs, improving long-term maintainability',
-      'Implemented input validation and structured logging improvements, reducing runtime errors and streamlining debugging workflows',
+      'Achieved Rank 80 out of 1176 contributors with 20 successfully merged PRs across multiple domain repositories',
+      'Contributed to CinderPeak (C++ library) by enhancing logging modules and removing deprecated APIs',
+      'Implemented input validation and structured logging improvements, streamlining debugging workflows',
     ],
     skills: ['C++', 'Open Source', 'Debugging', 'Logging', 'API Design', 'Git'],
   },
