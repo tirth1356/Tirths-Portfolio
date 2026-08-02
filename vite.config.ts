@@ -55,9 +55,14 @@
     build: {
       target: 'esnext',
       outDir: 'dist',
+      sourcemap: false,
+      minify: 'esbuild',
+      esbuildOptions: {
+        drop: ['console', 'debugger'],
+      },
     },
     server: {
       port: 3000,
       open: true,
     },
-  });
+  });
