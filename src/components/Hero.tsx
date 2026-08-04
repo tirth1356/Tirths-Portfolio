@@ -116,7 +116,7 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
               <span className="text-sm font-semibold tracking-wide">
-                Open to Work: SWE Intern | SDE | AIML Intern | DevOps Intern | Bu
+                Open to Work: SWE Intern | SDE | AIML Intern | DevOps Intern | 
               </span>
             </motion.div>
 
