@@ -76,15 +76,9 @@ export function Hero() {
         }
       })
       .catch(() => {
-        // Fallback to locally tracked mock value + localStorage if API is blocked or offline
-        try {
-          const localCount = localStorage.getItem('portfolio_visits');
-          const nextCount = localCount ? parseInt(localCount) + 1 : 1337;
-          localStorage.setItem('portfolio_visits', nextCount.toString());
-          setVisitorCount(nextCount);
-        } catch {
-          setVisitorCount(1356);
-        }
+        // On error, just log it and don't set the visitor count, 
+        // so it doesn't show fake local values.
+        console.error('Failed to fetch visitor count');
       });
   }, []);
 

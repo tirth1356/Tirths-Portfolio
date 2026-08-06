@@ -255,14 +255,14 @@ export function Header() {
           markerColor="#52525b"
           showIndex
           showMarker
-          proximityRadius={120}
-          maxShift={25}
-          falloff="smooth"
+          proximityRadius={60}
+          maxShift={20}
+          falloff="sharp"
           markerLength={45}
           markerGap={6}
           tickScale={0.5}
           scaleTick
-          itemGap={18}
+          itemGap={24}
           fontSize={0.95}
           smoothing={100}
           activeIndex={activeNavIndex}
