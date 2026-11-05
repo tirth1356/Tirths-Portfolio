@@ -110,7 +110,7 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
               <span className="text-sm font-semibold tracking-wide">
-                Open to Work: SWE Intern | SDE | AIML Intern | DevOps Intern | Analyst roles
+                Open to Work: SWE Intern | Research Intern | AIML Intern | DevOps Intern | Analyst roles
               </span>
             </motion.div>
 
@@ -192,7 +192,7 @@ export function Hero() {
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
-                href="https://drive.google.com/file/d/1RqQm8UAR7-mGNVFzc0vS513GxKPkwzUv/view?usp=sharing"
+                href="https://drive.google.com/file/d/1H3fOb8FT_JscIBFnGbRnHus0QPbLMqMF/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
